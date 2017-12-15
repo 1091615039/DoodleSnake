@@ -1,4 +1,4 @@
-package com.tianmaying.snake;
+package com.lc.snake;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

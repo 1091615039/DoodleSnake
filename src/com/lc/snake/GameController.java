@@ -1,4 +1,4 @@
-package com.tianmaying.snake;
+package com.lc.snake;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -184,7 +184,7 @@ public class GameController implements KeyListener,Runnable,ActionListener{
 	}
 
 	public void showGameOverMessage() {
-		JOptionPane.showMessageDialog(null, "游戏结束", "游戏结束", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Game Over", "Game over", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public void initGame() {

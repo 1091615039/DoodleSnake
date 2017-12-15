@@ -1,4 +1,4 @@
-package com.tianmaying.snake;
+package com.lc.snake;
 
 import java.util.LinkedList;
 
