@@ -9,7 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-
+//游戏控制类
 public class GameController implements KeyListener,Runnable,ActionListener{
 
 	private Grid grid;
@@ -39,8 +39,9 @@ public class GameController implements KeyListener,Runnable,ActionListener{
         this.grid = grid;
         this.gameView = gameView;
     }
-	
+	//初始化菜单栏
 	public void initMenu() {
+		//设置开始与结束
 		menuItemGameStart.setText("Start Again(A)");
 		menuItemGameStart.setMnemonic('A');
 		menuItemGameStart.addActionListener(this);
@@ -50,7 +51,7 @@ public class GameController implements KeyListener,Runnable,ActionListener{
 		menuGame.setText("Option");
 		menuGame.add(menuItemGameStart);
 		menuGame.add(menuItemGameExit);
-
+		//设置增加或减少难度以及是否使用网格背景
 		menuHelp.setText("operate");
 		increasedifficult.setText("Increase the difficulty(W)");
 		increasedifficult.addActionListener(this);
@@ -64,7 +65,7 @@ public class GameController implements KeyListener,Runnable,ActionListener{
 		menuHelp.add(reducedifficult);
 		menuHelp.add(recoverdifficult);
 		menuHelp.add(removeOrUseGrid);
-
+		//Help菜单
 		menuAbout.setText("Help");
 		menuItemTips.setText("Tips");
 		menuItemTips.addActionListener(this);
@@ -81,10 +82,11 @@ public class GameController implements KeyListener,Runnable,ActionListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
-
+	//键盘事件监听
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
+		//上下左右操作
 		if(key == KeyEvent.VK_LEFT) {
 			grid.changeDirection(Direction.LEFT);
 			grid.nextRound();
@@ -101,6 +103,7 @@ public class GameController implements KeyListener,Runnable,ActionListener{
 			grid.changeDirection(Direction.DOWN);
 			grid.nextRound();
 			gameView.draw();
+		//空格：暂停与继续
 		}else if(key == KeyEvent.VK_SPACE){
 			if(run) {	
 				run = false;
@@ -108,20 +111,24 @@ public class GameController implements KeyListener,Runnable,ActionListener{
 				run = true;
 				new Thread(this).start();
 			}
+		//enter：暂停或结束游戏时重开游戏
 		}else if(key == KeyEvent.VK_ENTER) {
 			if(run == false) {
 				grid.init();
 				run = true;
 				new Thread(this).start();
 			}
+		//重开游戏
 		}else if(key == KeyEvent.VK_A) {
 			initGame();
+		//退出游戏
 		}else if(key == KeyEvent.VK_B) {
 			System.exit(0);
 		}else if(key == KeyEvent.VK_W) {
 			increaseDifficult();
 		}else if(key == KeyEvent.VK_S) {
 			reduceDifficult();
+		//恢复初始难度
 		}else if(key == KeyEvent.VK_D) {
 			Settings.DEFAULT_MOVE_INTERVAL = 400;
 		}else if(key == KeyEvent.VK_X) {
@@ -132,7 +139,9 @@ public class GameController implements KeyListener,Runnable,ActionListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
-
+	/*
+	 * 控制蛇移动的线程
+	 */
 	@Override
 	public void run() {
 		while(run) {		
@@ -150,7 +159,9 @@ public class GameController implements KeyListener,Runnable,ActionListener{
 			}
 		}
 	
-	
+	/*
+	 * 鼠标事件监听
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == menuItemGameStart) {
@@ -173,7 +184,7 @@ public class GameController implements KeyListener,Runnable,ActionListener{
 			useGridOrNot();
 		}
 	}
-	
+	//是否使用网格背景
 	public void useGridOrNot() {
 		if(gameView.useGrid) {
 			gameView.useGrid = false;			
@@ -182,11 +193,11 @@ public class GameController implements KeyListener,Runnable,ActionListener{
 		}
 		gameView.draw();
 	}
-
+	//游戏结束弹窗
 	public void showGameOverMessage() {
 		JOptionPane.showMessageDialog(null, "Game Over", "Game over", JOptionPane.INFORMATION_MESSAGE);
 	}
-	
+	//初始化游戏
 	public void initGame() {
 		if(run) {
 			grid.init();
@@ -196,13 +207,13 @@ public class GameController implements KeyListener,Runnable,ActionListener{
 			new Thread(this).start();
 		}
 	}
-	
+	//增加难度
 	public void increaseDifficult() {
 		if(Settings.DEFAULT_MOVE_INTERVAL - 100 > 0) {
 			Settings.DEFAULT_MOVE_INTERVAL -= 100;
 		}
 	}
-	
+	//降低难度
 	public void reduceDifficult() {
 		Settings.DEFAULT_MOVE_INTERVAL += 100;
 	}

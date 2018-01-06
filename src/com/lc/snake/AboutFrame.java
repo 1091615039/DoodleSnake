@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-
+//“关于”窗口
 public class AboutFrame extends JDialog implements ActionListener {
 
 	/**
@@ -33,7 +33,7 @@ public class AboutFrame extends JDialog implements ActionListener {
 		add(but);
 		setModal(true);
 	}
-
+	//释放内存
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		dispose();

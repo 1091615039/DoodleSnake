@@ -1,7 +1,7 @@
 package com.lc.snake;
 
 import java.awt.Color;
-
+//默认设置属性
 public class Settings {
 	
 	public static final int DEFAULT_GRID_WIDTH = 450;

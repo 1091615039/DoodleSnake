@@ -1,5 +1,5 @@
 package com.lc.snake;
-
+//节点类，对应窗体上的小网格
 public class Node {
 	
 	private final int x;

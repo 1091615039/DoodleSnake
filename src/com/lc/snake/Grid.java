@@ -2,7 +2,7 @@ package com.lc.snake;
 
 import java.util.Arrays;
 import java.util.Random;
-
+//网格类
 public class Grid {
 	
 	private final boolean status[][];
@@ -35,7 +35,7 @@ public class Grid {
 		status = new boolean[width][height];	
 		init();
 	}
-	
+	//初始化桌面布局
 	public void init() {
 		for(int i=0;i<width;i++) {
 			Arrays.fill(status[i], false);
@@ -44,7 +44,7 @@ public class Grid {
 		initSnake();
 		createFood();	
 	}
-
+	//产生食物
 	public Node createFood() {
 		Random r = new Random();
 		int x,y;
@@ -55,7 +55,7 @@ public class Grid {
 		food = new Node(x,y);
 		return food;
 	}
-
+	//初始化贪吃蛇
 	public Snake initSnake() {
 		snake = new Snake();
 		for(int i=0;i<Math.min(width, height)/3;i++) {
@@ -64,7 +64,7 @@ public class Grid {
 		}
 		return snake;
 	}
-	
+	//下一步是否有效，如果有效，则走一步
 	public boolean nextRound() {
 		Node node = snake.move(snakeDirection);
 		if(validPosition(snake.getHead())) {
@@ -80,7 +80,7 @@ public class Grid {
 		}
 		return false;
 	}
-	
+	//改变行进方向
 	public Direction changeDirection(Direction newDirection) {
 		if(snakeDirection.compatibleWith(newDirection)) {
 			snakeDirection = newDirection;
@@ -91,13 +91,13 @@ public class Grid {
 	public Direction getSnakeDirection() {
 		return snakeDirection;
 	}
-
+	//判断节点区域是否有效
 	public boolean validPosition(Node area) {
 		int x = area.getX();
 		int y = area.getY();
 		return x>=0 && x<width && y>=0 && y<height && !status[x][y];
 	}
-	
+	//判断节点是否为食物所在位置
 	public boolean isFood(Node area) {
 		int x=area.getX();
 		int y=area.getY();

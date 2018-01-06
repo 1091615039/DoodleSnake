@@ -4,7 +4,7 @@ import java.awt.Font;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-
+//“Tips”窗口
 public class TipsFrame extends JDialog{
 
 	/**

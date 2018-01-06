@@ -13,7 +13,7 @@ public class Snake {
 //		}
 //		return null;
 //	}
-	
+	//贪吃蛇移动一步
 	public Node move(Direction direction) {
 		Node newHead = null;
 		switch (direction) {

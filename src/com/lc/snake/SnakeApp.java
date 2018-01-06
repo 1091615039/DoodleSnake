@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-
+//主函数类
 public class SnakeApp{
 	
 	private GameView gameview;
